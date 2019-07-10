@@ -1,0 +1,165 @@
+<div class="container-fluid">
+  <h2>My Cron Jobs</h2> <small>{{calendar}}</small>
+<hr>
+</div>
+<div class="container-fluid">
+  <!-- Lanza un Dialogo modal para crear un nuevo Cron -->
+  <button type="button" class="btn btn-outline-danger font-button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create CronJon</button>
+<br>
+<hr>
+  <form class="form-inline">
+    <!-- <input type=text list=browsers class="btn btn-sm btn-outline-danger  mr-sm-5" placeholder="Bulk Action"> -->
+    <button class="btn btn-sm btn-outline-danger mr-sm-5 dropdown-toggle font-button" id="menu1" data-toggle="dropdown">Builk Action<span class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+         <li role="presentation"><a role="menuitem" tabindex="-1" class="btn-sm" href="#">1</a></li>
+         <li role="presentation"><a role="menuitem" tabindex="-1" class="btn-sm" href="#">CSS</a></li>
+         <li role="presentation"><a role="menuitem" tabindex="-1" class="btn-sm" href="#">JavaScript</a></li>
+      </ul>
+    <input class="form-control mr-sm-1 btn-sm" type="text" placeholder="Search">
+    <button class="btn btn-outline-danger mr-sm-5 my-2 my-sm-0 btn-sm font-button" type="submit">Search</button>
+    <button class="form-control mr-sm-2 btn btn-outline-danger btn-sm font-button">Create New group</button>
+    <input class="form-control mr-sm-2 btn-sm font-button" type="checkbox" placeholder="Group View">
+    <small>Group View</small>
+  </form>
+</div>
+<!-- Pintamos la tabla de la lista de los cron -->
+<div class="container top-table">
+  <table class="table">
+  <thead class="btn-danger">
+    <tr>
+      <th class="table-header" *ngFor="let column of columns">{{column.name}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cronjob of cronJobs" class="font-table">
+      <th scope="row">{{cronjob.id}}</th>
+      <td>{{cronjob.name}}</td>
+      <td>{{cronjob.expression}}</td>
+      <td>{{cronjob.url2Call}}</td>
+      <td>{{cronjob.engines}}</td>
+      <td>{{cronjob.ts}}</td>
+      <td>{{cronjob.tf}}</td>
+      <td>{{cronjob.cf}}</td>
+      <td>{{cronjob.emailMe}}</td>
+      <td>{{cronjob.logs}}</td>
+      <td>{{cronjob.status}}</td>
+      <td class="form-inline ">
+        <div *ngIf="cronjob.action.includes('E')">
+          <a href="#"><img class="img-cron" src="./../../assets/crons/edit.svg" alt="Edit"/></a>
+        </div>
+        <div *ngIf="cronjob.action.includes('R')">
+          <a href="#"><img src="./../../assets/crons/refresh.svg" alt="Refresh" class="img-cron"/></a>
+        </div>
+        <div *ngIf="cronjob.action.includes('C')">
+          <a href="#"><img src="./../../assets/crons/copy.svg" alt="Copy" class="img-cron"/></a>
+        </div>
+        <div *ngIf="cronjob.action.includes('M')">
+          <a href="#"><img src="./../../assets/crons/hand.svg" alt="Launch" class="img-cron"/></a>
+        </div>
+        <div *ngIf="cronjob.action.includes('D')">
+          <a href="#"><img src="./../../assets/crons/remove.svg" alt="Remove" class="img-cron"/></a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <form class="form-inline">
+  <small class="pagination pagination-sm form-control-sm mr-sm-5">1-8 of 8</small>
+    <button class="btn btn-sm btn-outline-danger mr-sm-5 dropdown-toggle" id="rowsPP" data-toggle="dropdown">Rows per page
+     <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+       <li role="presentation"><a role="menuitem" tabindex="-1" class="btn-sm" href="#">10</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" class="btn-sm" href="#">20</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" class="btn-sm" href="#">30</a></li>
+    </ul>
+    <ul class="pagination pagination-sm">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </form>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="modal fade"> -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Dialogo Modal para crear Un Cron-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Cron Job</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="cronjob-name" class="form-control-label label-danger font-bold mr-sm-5">CronJob Name:</label>
+            <input type="text" class="form-control" id="cronJob-name">
+          </div>
+          <div class="form-group">
+            <label for="cronjob-notifyMe" class="form-control-label label-danger font-bold mr-sm-5">Notify me:</label>
+            <input type="text" class="form-control" id="cronjob-notifyMe">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label mr-sm-5">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger font-button" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger font-button">Create</button>
+      </div>
+    </div>
+  </div>
+</div>

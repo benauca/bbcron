@@ -1,0 +1,27 @@
+.top-table{
+  margin-top: 35px;
+}
+.table-header {
+  font-size: 12px;
+}
+
+.font-table {
+  font-size: 12px;
+}
+
+.font-button {
+  font-size: 12px;
+}
+
+.img-cron {
+  height: 18px;
+}
+
+.text-cron {
+  border-radius: 0px;
+  height: 35px;
+}
+.font-bold {
+  font-weight: bold;
+  font-size: 12px;
+}
